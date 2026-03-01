@@ -1,127 +1,82 @@
-{% extends 'layout/base.html' %}
+{%  extends 'layout/base.html' %}
 {% load static %}
-
-{% block title %}Register{% endblock %}
-
-{% block id %}id="user-register"{% endblock %}
-{% block class %}class="user-register blog"{% endblock %}
-
+{% block title %} Register{% endblock %}
+{% block class %} class="user-register blog" {% endblock %}
 {% block content %}
-<div class="main-content">
-    <div class="wrap-banner">
 
-        <!-- breadcrumb -->
-        <nav class="breadcrumb-bg">
-            <div class="container no-index">
-                <div class="breadcrumb">
-                    <ol>
-                        <li>
-                            <a href="{% url 'home' %}">
-                                <span>Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'accounts:register' %}">
-                                <span>Create Account</span>
-                            </a>
-                        </li>
-                    </ol>
+    <div class="main-content">
+        <div class="wrap-banner">
+
+            <!-- breadcrumb -->
+            <nav class="breadcrumb-bg">
+                <div class="container no-index">
+                    <div class="breadcrumb">
+                        <ol>
+                            <li>
+                                <a href="{% url 'shared:home' %}">
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'shared:about' %}">
+                                    <span>About us</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
 
-    </div>
-
-    <!-- main -->
-    <div id="wrapper-site">
-        <div class="container">
-            <div class="row">
-                <div id="content-wrapper" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 onecol">
-                    <div id="main">
-                        <div id="content" class="page-content">
-                            <div class="register-form text-center">
-                                <h1 class="text-center title-page">Create Account</h1>
-
-                                <form action="{% url 'accounts:register' %}" id="customer-form"
-                                      class="js-customer-form" method="post" novalidate>
-                                    {% csrf_token %}
-
-                                    {% if form.non_field_errors %}
-                                        <div class="alert alert-danger">
-                                            {{ form.non_field_errors }}
-                                        </div>
-                                    {% endif %}
-
-                                    <div>
-                                        <div class="form-group">
-                                            <div>
-                                                <input class="form-control"
-                                                       name="firstname"
-                                                       type="text"
-                                                       placeholder="First name"
-                                                       value="{{ form.firstname.value|default:'' }}">
-                                                {% if form.firstname.errors %}
-                                                    <small class="text-danger">{{ form.firstname.errors|striptags }}</small>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div>
-                                                <input class="form-control"
-                                                       name="lastname"
-                                                       type="text"
-                                                       placeholder="Last name"
-                                                       value="{{ form.lastname.value|default:'' }}">
-                                                {% if form.lastname.errors %}
-                                                    <small class="text-danger">{{ form.lastname.errors|striptags }}</small>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div>
-                                                <input class="form-control"
-                                                       name="email"
-                                                       type="email"
-                                                       placeholder="Email"
-                                                       value="{{ form.email.value|default:'' }}">
-                                                {% if form.email.errors %}
-                                                    <small class="text-danger">{{ form.email.errors|striptags }}</small>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div>
-                                                <div class="input-group js-parent-focus">
-                                                    <input class="form-control js-child-focus js-visible-password"
-                                                           name="password"
-                                                           type="password"
-                                                           placeholder="Password">
-                                                </div>
-                                                {% if form.password.errors %}
-                                                    <small class="text-danger">{{ form.password.errors|striptags }}</small>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="clearfix">
+        <!-- main -->
+        <div id="wrapper-site">
+            <div class="container">
+                <div class="row">
+                    <div id="content-wrapper" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 onecol">
+                        <div id="main">
+                            <div id="content" class="page-content">
+                                <div class="register-form text-center">
+                                    <h1 class="text-center title-page">Create Account</h1>
+                                    <form action="{% url 'users:register' %}" id="customer-form" class="js-customer-form" method="post">
                                         <div>
-                                            <button class="btn btn-primary" data-link-action="sign-in" type="submit">
-                                                Create Account
-                                            </button>
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <div>
+                                                    <input class="form-control" name="first_name" type="text" placeholder="First name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                   <div>
+                                                    <input class="form-control" name="last_name" type="text" placeholder="Last name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div>
+                                                    <input class="form-control" name="username" type="text" placeholder="Username">
+                                                </div>
+                                            </div>
+                                             <div class="form-group">
+                                                <div>
+                                                    <input class="form-control" name="email" type="email" placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div>
+                                                    <div class="input-group js-parent-focus">
+                                                        <input class="form-control js-child-focus js-visible-password" name="password" type="password" placeholder="Password">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                </form>
-
-                                {# ixtiyoriy: login link #}
-                                <div class="mt-3">
-                                    <a href="{% url 'accounts:login' %}">Already have an account? Sign in</a>
+                                        <div class="clearfix">
+                                            <div>
+                                                <button class="btn btn-primary" data-link-action="sign-in" type="submit">
+                                                    Create Account
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -129,5 +84,4 @@
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

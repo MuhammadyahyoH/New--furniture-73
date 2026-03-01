@@ -19,13 +19,17 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from users.views import register_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blogs/', include('blogs.urls', namespace='blogs')),
     path('products/', include('products.urls', namespace='products')),
     path('', include('shared.urls', namespace='shared')),
     path('users/', include('users.urls', namespace='users')),
-    path('', include('about.urls'))
+    path('', include('about.urls')),
+
+    path('register.html', register_view, name='register_html'),
 ]
 
 if settings.DEBUG:
